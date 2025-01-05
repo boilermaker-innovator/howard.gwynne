@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalized Teaser Creator</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        
+        /* Form Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .form-section {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        /* Preview Section */
+        .preview {
+            max-width: 600px;
+            margin: 32px auto;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .preview-header {
+            background-color: #0066cc;
+            color: white;
+            padding: 24px;
+        }
+        
+        .preview-header-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        
+        .preview-logo {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            background: white;
+            padding: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .preview-title {
+            margin: 0;
+            font-size: 24px;
+            flex: 1;
+        }
+        
+        /* Tabs */
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .tab-button {
+            padding: 12px 24px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+        }
+        
+        .tab-button.active {
+            color: #0066cc;
+            border-bottom: 2px solid #0066cc;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 24px;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Content Sections */
+        .content-section {
+            border-left: 4px solid;
+            padding-left: 16px;
+            margin-bottom: 24px;
+        }
+        
+        .content-section.blue { border-color: #0066cc; }
+        .content-section.green { border-color: #00cc66; }
+        .content-section.purple { border-color: #6600cc; }
+        
+        /* Buttons */
+        .button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .button-clear {
+            background-color: #ff4444;
+            color: white;
+        }
+        
+        .preview-link {
+            display: block;
+            background-color: #0066cc;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 24px;
+        }
+        
+        .preview-image {
+            width: 100%;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-section">
+            <h2>Personalized Teaser Creator</h2>
+            
+            <form id="teaserForm">
+                <div class="form-group">
+                    <label>Recipient Name</label>
+                    <input type="text" id="recipientName" value="Uncle Howard">
+                </div>
+                
+                <div class="form-group">
+                    <label>Logo URL</label>
+                    <input type="text" id="logoUrl" value="https://i.ibb.co/8j0Zc9W/IMG-1435.jpg">
+                </div>
+                
+                <div class="form-group">
+                    <label>Example Image URL</label>
+                    <input type="text" id="exampleImageUrl" value="https://i.ibb.co/M2xFnxM/IMG-1355.jpg">
+                </div>
+                
+                <div class="form-group">
+                    <label>Introduction Text</label>
+                    <textarea id="introText">You know how in your practice, you always emphasized the importance of telling stories in a structured, dignified way? I've been working on bringing that same approach to online storytelling.</textarea>
+                </div>
+                
+                <div class="grid">
+                    <div class="form-group">
+                        <label>Problem Text</label>
+                        <textarea id="problemText">These days, when people try to share important stories online - whether it's for fundraising, community support, or spreading awareness - their messages often get lost in the noise.</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Solution Text</label>
+                        <textarea id="solutionText">I've created a way to present stories that unfolds naturally - like having a thoughtful conversation rather than just posting on social media. Think of it as creating a structured space for storytelling.</textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Why It Matters Text</label>
+                    <textarea id="whyText">Just like in counseling, how you present information is often as important as the information itself. This helps people share their stories in a way that maintains dignity while creating real connections.</textarea>
+                </div>
+                
+                <div class="grid">
+                    <div class="form-group">
+                        <label>How To Text</label>
+                        <textarea id="howToText">People can easily add their story and photos - it's as straightforward as sharing pictures on your phone. The system then organizes everything into a professional presentation.</textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Sharing Text</label>
+                        <textarea id="sharingText">Once created, these stories can be shared anywhere online while maintaining their professional appearance and structured format.</textarea>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Preview Link</label>
+                    <input type="text" id="previewLink" value="https://boilermaker-innovator.github.io/job-teaser-023-mvp/">
+                </div>
+                
+                <button type="button" class="button button-clear" onclick="clearForm()">Clear Form</button>
+            </form>
+        </div>
+        
+        <div class="preview" id="preview">
+            <div class="preview-header">
+                <div class="preview-header-content">
+                    <img id="previewLogo" src="https://i.ibb.co/8j0Zc9W/IMG-1435.jpg" alt="Logo" class="preview-logo">
+                    <h2 class="preview-title">Hi <span id="previewName">Uncle Howard</span> - Let me show you what I'm working on</h2>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab('idea')">The Idea</button>
+                <button class="tab-button" onclick="switchTab('howTo')">How It Works</button>
+            </div>
+            
+            <div id="ideaTab" class="tab-content active">
+                <p id="previewIntro" class="preview-text"></p>
+                
+                <div class="content-section blue">
+                    <h3>The Problem</h3>
+                    <p id="previewProblem"></p>
+                </div>
+                
+                <div class="content-section green">
+                    <h3>My Solution</h3>
+                    <p id="previewSolution"></p>
+                </div>
+                
+                <div class="content-section purple">
+                    <h3>Why It Matters</h3>
+                    <p id="previewWhy"></p>
+                </div>
+            </div>
+            
+            <div id="howToTab" class="tab-content">
+                <p>Let me show you an example of how it works:</p>
+                <img id="previewExample" src="" alt="Example" class="preview-image">
+                
+                <div class="content-section blue">
+                    <h3>Simple to Create</h3>
+                    <p id="previewHowTo"></p>
+                </div>
+                
+                <div class="content-section green">
+                    <h3>Easy to Share</h3>
+                    <p id="previewSharing"></p>
+                </div>
+                
+                <a id="previewDemoLink" href="" class="preview-link" target="_blank">See An Example Here</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to update preview
+        function updatePreview() {
+            document.getElementById('previewName').textContent = document.getElementById('recipientName').value;
+            document.getElementById('previewLogo').src = document.getElementById('logoUrl').value;
+            document.getElementById('previewExample').src = document.getElementById('exampleImageUrl').value;
+            document.getElementById('previewIntro').textContent = document.getElementById('introText').value;
+            document.getElementById('previewProblem').textContent = document.getElementById('problemText').value;
+            document.getElementById('previewSolution').textContent = document.getElementById('solutionText').value;
+            document.getElementById('previewWhy').textContent = document.getElementById('whyText').value;
+            document.getElementById('previewHowTo').textContent = document.getElementById('howToText').value;
+            document.getElementById('previewSharing').textContent = document.getElementById('sharingText').value;
+            document.getElementById('previewDemoLink').href = document.getElementById('previewLink').value;
+        }
+        
+        // Function to switch tabs
+        function switchTab(tab) {
+            // Update tab buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update tab content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tab + 'Tab').classList.add('active');
+        }
+        
+        // Function to clear form
+        function clearForm() {
+            document.getElementById('teaserForm').reset();
+            updatePreview();
+        }
+        
+        // Add event listeners to all form inputs
+        document.querySelectorAll('input, textarea').forEach(input => {
+            input.addEventListener('input', updatePreview);
+        });
+        
+        // Initial preview update
+        updatePreview();
+    </script>
+</body>
+</html>
