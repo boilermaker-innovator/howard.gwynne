@@ -83,6 +83,7 @@
             background: white;
             padding: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            object-fit: cover;
         }
         
         .preview-title {
@@ -160,8 +161,10 @@
         
         .preview-image {
             width: 100%;
+            max-height: 400px;
             border-radius: 8px;
             margin: 16px 0;
+            object-fit: cover;
         }
         
         /* Grid Layout */
@@ -185,12 +188,12 @@
                 
                 <div class="form-group">
                     <label>Logo URL</label>
-                    <input type="text" id="logoUrl" value="https://ibb.co/JH76Fbb">
+                    <input type="text" id="logoUrl" value="https://i.ibb.co/vBchDH9/IMG-1706.jpg">
                 </div>
                 
                 <div class="form-group">
                     <label>Example Image URL</label>
-                    <input type="text" id="exampleImageUrl" value="https://ibb.co/JH76Fbb">
+                    <input type="text" id="exampleImageUrl" value="https://i.ibb.co/qFbY9wN/IMG-1828.jpg">
                 </div>
                 
                 <div class="form-group">
@@ -239,7 +242,7 @@
         <div class="preview" id="preview">
             <div class="preview-header">
                 <div class="preview-header-content">
-                    <img id="previewLogo" src="https://i.ibb.co/8j0Zc9W/IMG-1435.jpg" alt="Logo" class="preview-logo">
+                    <img id="previewLogo" src="https://i.ibb.co/vBchDH9/IMG-1706.jpg" alt="Logo" class="preview-logo">
                     <h2 class="preview-title">Hi <span id="previewName">Uncle Howard</span> - Let me show you what I'm working on</h2>
                 </div>
             </div>
@@ -270,7 +273,7 @@
             
             <div id="howToTab" class="tab-content">
                 <p>Let me show you an example of how it works:</p>
-                <img id="previewExample" src="" alt="Example" class="preview-image">
+                <img id="previewExample" src="https://i.ibb.co/qFbY9wN/IMG-1828.jpg" alt="Example" class="preview-image">
                 
                 <div class="content-section blue">
                     <h3>Simple to Create</h3>
@@ -308,7 +311,7 @@
             document.querySelectorAll('.tab-button').forEach(button => {
                 button.classList.remove('active');
             });
-            event.target.classList.add('active');
+            event.currentTarget.classList.add('active');
             
             // Update tab content
             document.querySelectorAll('.tab-content').forEach(content => {
