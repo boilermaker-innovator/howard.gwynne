@@ -14,50 +14,26 @@
             color: #333;
         }
         
-        /* Form Container */
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
         }
         
-        .form-section {
-            background: white;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 32px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-        
-        /* Form Elements */
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        
-        input, textarea {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
-        
-        textarea {
-            height: 100px;
-            resize: vertical;
+        h1 {
+            text-align: center;
+            color: #0066cc;
+            margin-bottom: 24px;
         }
         
         /* Preview Section */
         .preview {
             max-width: 600px;
-            margin: 32px auto;
+            margin: 0 auto;
             background: white;
             border-radius: 8px;
             overflow: hidden;
@@ -133,6 +109,43 @@
         .content-section.green { border-color: #00cc66; }
         .content-section.purple { border-color: #6600cc; }
         
+        /* Form Section */
+        .form-section {
+            background: white;
+            border-radius: 8px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .form-section h2 {
+            color: #0066cc;
+            margin-top: 0;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
         /* Buttons */
         .button {
             padding: 12px 24px;
@@ -177,8 +190,62 @@
 </head>
 <body>
     <div class="container">
+        <h1>Personalized Teaser Creator</h1>
+        
+        <!-- Preview Section (Now at the top) -->
+        <div class="preview" id="preview">
+            <div class="preview-header">
+                <div class="preview-header-content">
+                    <img id="previewLogo" src="https://i.ibb.co/vBchDH9/IMG-1706.jpg" alt="Logo" class="preview-logo">
+                    <h2 class="preview-title">Hi <span id="previewName">Uncle Howard</span> - Let me show you what I'm working on</h2>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-button active" onclick="switchTab('idea')">The Idea</button>
+                <button class="tab-button" onclick="switchTab('howTo')">How It Works</button>
+            </div>
+            
+            <div id="ideaTab" class="tab-content active">
+                <p id="previewIntro" class="preview-text"></p>
+                
+                <div class="content-section blue">
+                    <h3>The Problem</h3>
+                    <p id="previewProblem"></p>
+                </div>
+                
+                <div class="content-section green">
+                    <h3>My Solution</h3>
+                    <p id="previewSolution"></p>
+                </div>
+                
+                <div class="content-section purple">
+                    <h3>Why It Matters</h3>
+                    <p id="previewWhy"></p>
+                </div>
+            </div>
+            
+            <div id="howToTab" class="tab-content">
+                <p>Let me show you an example of how it works:</p>
+                <img id="previewExample" src="https://i.ibb.co/qFbY9wN/IMG-1828.jpg" alt="Example" class="preview-image">
+                
+                <div class="content-section blue">
+                    <h3>Simple to Create</h3>
+                    <p id="previewHowTo"></p>
+                </div>
+                
+                <div class="content-section green">
+                    <h3>Easy to Share</h3>
+                    <p id="previewSharing"></p>
+                </div>
+                
+                <a id="previewDemoLink" href="" class="preview-link" target="_blank">See An Example Here</a>
+            </div>
+        </div>
+        
+        <!-- Form Section (Now below the preview) -->
         <div class="form-section">
-            <h2>Personalized Teaser Creator</h2>
+            <h2>Edit Your Teaser</h2>
             
             <form id="teaserForm">
                 <div class="form-group">
@@ -237,56 +304,6 @@
                 
                 <button type="button" class="button button-clear" onclick="clearForm()">Clear Form</button>
             </form>
-        </div>
-        
-        <div class="preview" id="preview">
-            <div class="preview-header">
-                <div class="preview-header-content">
-                    <img id="previewLogo" src="https://i.ibb.co/vBchDH9/IMG-1706.jpg" alt="Logo" class="preview-logo">
-                    <h2 class="preview-title">Hi <span id="previewName">Uncle Howard</span> - Let me show you what I'm working on</h2>
-                </div>
-            </div>
-            
-            <div class="tabs">
-                <button class="tab-button active" onclick="switchTab('idea')">The Idea</button>
-                <button class="tab-button" onclick="switchTab('howTo')">How It Works</button>
-            </div>
-            
-            <div id="ideaTab" class="tab-content active">
-                <p id="previewIntro" class="preview-text"></p>
-                
-                <div class="content-section blue">
-                    <h3>The Problem</h3>
-                    <p id="previewProblem"></p>
-                </div>
-                
-                <div class="content-section green">
-                    <h3>My Solution</h3>
-                    <p id="previewSolution"></p>
-                </div>
-                
-                <div class="content-section purple">
-                    <h3>Why It Matters</h3>
-                    <p id="previewWhy"></p>
-                </div>
-            </div>
-            
-            <div id="howToTab" class="tab-content">
-                <p>Let me show you an example of how it works:</p>
-                <img id="previewExample" src="https://i.ibb.co/qFbY9wN/IMG-1828.jpg" alt="Example" class="preview-image">
-                
-                <div class="content-section blue">
-                    <h3>Simple to Create</h3>
-                    <p id="previewHowTo"></p>
-                </div>
-                
-                <div class="content-section green">
-                    <h3>Easy to Share</h3>
-                    <p id="previewSharing"></p>
-                </div>
-                
-                <a id="previewDemoLink" href="" class="preview-link" target="_blank">See An Example Here</a>
-            </div>
         </div>
     </div>
 
