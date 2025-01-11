@@ -3,6 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch Text Transform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 24px;
+            min-height: 600px;
+        }
+
+        .card {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .preview {
+            background: linear-gradient(135deg, #f0f7ff 0%, #f5f0ff 100%);
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .image-upload {
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 24px;
+            transition: background-color 0.2s;
+        }
+
+        .image-upload:hover {
+            background: #f9f9f9;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            margin-bottom: 8px;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, textarea:focus {
+            outline: none;
+            border-color: #4f46e5;
+        }
+
+        textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .hint {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .preview-content {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .preview-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background: #f0f0f0;
+        }
+
+        .preview-text {
+            padding: 24px;
+        }
+
+        .preview-title {
+            font-size: 28px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 16px;
+        }
+
+        .preview-story {
+            color: #333;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .button-primary {
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            color: white;
+            border: none;
+            width: 100%;
+            margin-top: 24px;
+            font-size: 16px;
+        }
+
+        .button-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Input Side -->
+        <div class="card">
+            <h2 class="title">Type your story</h2>
+            
+            <label class="image-upload" for="file-upload">
+                <div>📷 Add a photo</div>
+                <input type="file" id="file-upload" accept="image/*">
+            </label>
+
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="title-input"
+                    placeholder="Enter your title..."
+                    value="Help Sarah Beat Cancer">
+                <div class="hint">Keep it clear and emotional</div>
+            </div>
+
+            <div class="input-group">
+                <textarea 
+                    id="story-input" 
+                    placeholder="Tell your story...">Sarah, a loving mother of two, was recently diagnosed with stage 2 breast cancer. Your support will help cover her treatment costs and ensure her children are cared for during this challenging time.</textarea>
+                <div class="hint">Just type naturally - we'll handle the design</div>
+            </div>
+
+            <button class="button button-primary" onclick="shareStory()">Share Your Story</button>
+        </div>
+
+        <!-- Preview Side -->
+        <div class="card preview">
+            <h2 class="title">Watch it transform</h2>
+            
+            <div class="preview-content">
+                <img src="/api/placeholder/600/400" id="preview-image" alt="Story visual" class="preview-image">
+                <div class="preview-text">
+                    <h1 class="preview-title" id="preview-title">Help Sarah Beat Cancer</h1>
+                    <p class="preview-story" id="preview-story">Sarah, a loving mother of two, was recently diagnosed with stage 2 breast cancer. Your support will help cover her treatment costs and ensure her children are cared for during this challenging time.</p>
+                    
+                    <a href="#" class="button button-support">Support Sarah</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .button-support {
+            background: linear-gradient(90deg, #4f46e5, #8b5cf6);
+            color: white;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 24px;
+            transition: all 0.2s;
+        }
+
+        .button-support:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+    </style>
+
+    <script>
+        // Image upload handling
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('preview-image').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Real-time text updates
+        document.getElementById('title-input').addEventListener('input', function(e) {
+            document.getElementById('preview-title').textContent = e.target.value;
+        });
+
+        document.getElementById('story-input').addEventListener('input', function(e) {
+            document.getElementById('preview-story').textContent = e.target.value;
+        });
+
+        // Share button action
+        function shareStory() {
+            alert('Your story is ready to share!');
+        }
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Personalized Teaser Creator</title>
     <style>
         /* General Styles */
